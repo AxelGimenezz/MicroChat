@@ -9,10 +9,27 @@
   <body>
     <header>
       <div class="brand">
-        <span class="dot" id="status-dot" aria-hidden="true"></span>
-        <h1>MicroChat</h1>
-        <span id="version" class="version-tag"></span>
-        <span id="status-text" aria-live="polite">comprobando modelo…</span>
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 40 40" width="34" height="34" fill="none">
+            <path
+              d="M7.5 31.5V19.7C7.5 11.9 12.4 6.5 20 6.5s12.5 5.4 12.5 13.2v11.8H7.5Z"
+              stroke="currentColor"
+              stroke-width="2.2"
+            />
+            <path d="M20 6.8v24.4" stroke="currentColor" stroke-width="1.5" opacity=".42" />
+            <path d="M20 17.8c4 0 6.6 2.7 6.6 6.7v7H20V17.8Z" fill="currentColor" />
+            <path d="M5.5 32h29" stroke="currentColor" stroke-width="2.2" stroke-linecap="square" />
+          </svg>
+        </span>
+        <span class="brand-copy">
+          <h1>MicroChat</h1>
+          <span class="brand-caption">chat local</span>
+        </span>
+        <span class="status-area">
+          <span class="dot" id="status-dot" aria-hidden="true"></span>
+          <span id="version" class="version-tag"></span>
+          <span id="status-text" aria-live="polite">comprobando modelo…</span>
+        </span>
       </div>
       <button id="new-chat" type="button" disabled>Nueva conversación</button>
     </header>

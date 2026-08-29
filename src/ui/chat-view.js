@@ -78,11 +78,14 @@ export function createChatView(document) {
   function addAnswerBubble() {
     const bubble = document.createElement("div");
     bubble.className = "bubble nano";
+    const speaker = document.createElement("span");
+    speaker.className = "speaker";
+    speaker.textContent = "MicroChat";
     const answer = document.createElement("div");
     answer.className = "bubble-answer";
     const meta = document.createElement("div");
     meta.className = "bubble-meta";
-    bubble.append(answer, meta);
+    bubble.append(speaker, answer, meta);
     elements.chat.append(bubble);
     elements.chat.scrollTop = elements.chat.scrollHeight;
     return { answer, meta };
