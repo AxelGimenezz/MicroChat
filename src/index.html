@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Chat privado con Gemini Nano y documentos locales." />
+    <title>MicroChat — IA local</title>
+  </head>
+  <body>
+    <header>
+      <div class="brand">
+        <span class="dot" id="status-dot" aria-hidden="true"></span>
+        <h1>MicroChat</h1>
+        <span id="version" class="version-tag"></span>
+        <span id="status-text" aria-live="polite">comprobando modelo…</span>
+      </div>
+      <button id="new-chat" type="button" disabled>Nueva conversación</button>
+    </header>
+
+    <section id="system-settings" aria-label="Configuración de la sesión">
+      <label for="sysprompt">System prompt</label>
+      <input id="sysprompt" value="Sos un asistente de consultas generales" />
+      <span id="system-hint">Se usa al crear la sesión local.</span>
+    </section>
+
+    <section id="setup-panel">
+      <h2 id="setup-title" aria-live="polite">Comprobando Gemini Nano</h2>
+      <p id="setup-reason">Esta ventana ejecuta el modelo de forma local: nada sale de tu compu.</p>
+      <button id="activate-model" class="primary" type="button" disabled>
+        Comprobando modelo…
+      </button>
+      <div id="setup-help" hidden>
+        <ol id="setup-steps">
+          <li>Usá Chrome de escritorio 149 o superior.</li>
+          <li>
+            Necesitás unos 22 GB libres y GPU con más de 4 GB de VRAM, o 16 GB de RAM y 4 núcleos.
+          </li>
+          <li>Activá <code>chrome://flags/#prompt-api-for-gemini-nano</code> y reiniciá Chrome.</li>
+          <li>
+            Si usás localhost, activá también
+            <code>chrome://flags/#optimization-guide-on-device-model</code>.
+          </li>
+          <li>Revisá la descarga en <code>chrome://on-device-internals</code>.</li>
+        </ol>
+        <p class="hint">
+          Los links <code>chrome://</code> se copian y pegan en la barra de direcciones.
+        </p>
+      </div>
+      <details class="environment-details">
+        <summary>Diagnóstico del entorno</summary>
+        <pre id="environment-diagnostics"></pre>
+      </details>
+    </section>
+
+    <main id="chat" role="log" aria-label="Conversación" aria-live="polite" hidden></main>
+
+    <footer id="composer-wrap" hidden>
+      <div id="docsrow">
+        <label>
+          <input type="checkbox" id="docs-toggle" checked />
+          Anclar respuestas a mis documentos
+        </label>
+        <span id="doc-status" aria-live="polite"></span>
+      </div>
+      <div id="attachments" aria-label="Documentos cargados"></div>
+      <div id="composer">
+        <button
+          id="attach-btn"
+          type="button"
+          title="Adjuntar documentos de texto"
+          aria-label="Adjuntar documentos"
+        >
+          📎
+        </button>
+        <textarea
+          id="input"
+          rows="1"
+          placeholder="Escribí acá… (Enter envía · Shift+Enter salto de línea)"
+          disabled
+        ></textarea>
+        <button id="send" type="button" disabled>Enviar</button>
+        <button id="stop" type="button" hidden>Detener</button>
+      </div>
+      <input
+        type="file"
+        id="file-input"
+        multiple
+        hidden
+        accept=".txt,.md,.csv,.tsv,.json,.log,.xml,.srt,.vtt,text/plain,application/json,text/markdown,text/csv"
+      />
+      <div id="usage" aria-live="polite"></div>
+    </footer>
+
+    <div id="drop-overlay" hidden>
+      <div class="drop-card">
+        <strong>Soltá los archivos acá</strong>
+        <span>Texto (.txt, .md, .csv, .tsv, .json…)<br />Se procesa sólo en esta ventana.</span>
+      </div>
+    </div>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
